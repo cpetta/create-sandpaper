@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
-const createXo = require('.');
+const createSandpaper = require('.');
 
-createXo({
+createSandpaper({
 	args: process.argv.slice(2)
 });

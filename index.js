@@ -32,14 +32,14 @@ const CONFIG_FILES = [
 const buildTestScript = test => {
 	if (test && test !== DEFAULT_TEST_SCRIPT) {
 		// Don't add if it's already there
-		if (!/^xo( |$)/.test(test)) {
-			return `xo && ${test}`;
+		if (!/^sandpaper( |$)/.test(test)) {
+			return `sandpaper --lint && ${test}`;
 		}
 
 		return test;
 	}
 
-	return 'xo';
+	return 'sandpaper --lint';
 };
 
 const warnConfigFile = packageCwd => {
@@ -49,7 +49,7 @@ const warnConfigFile = packageCwd => {
 		return;
 	}
 
-	console.log(`${files.join(' & ')} can probably be deleted now that you're using XO.`);
+	console.log(`${files.join(' & ')} can probably be deleted now that you're using Sandpaper.`);
 };
 
 module.exports = async (options = {}) => {
@@ -75,7 +75,7 @@ module.exports = async (options = {}) => {
 	}
 
 	if (Object.keys(cli).length > 0) {
-		packageJson.xo = {...packageJson.xo, ...cli};
+		packageJson.sandpaper = {...packageJson.sandpaper, ...cli};
 	}
 
 	writePkg.sync(packagePath, packageJson);
@@ -91,7 +91,7 @@ module.exports = async (options = {}) => {
 
 	if (hasYarn(packageCwd)) {
 		try {
-			await execa('yarn', ['add', '--dev', '--ignore-workspace-root-check', 'xo'], {cwd: packageCwd});
+			await execa('yarn', ['add', '--dev', '--ignore-workspace-root-check', 'sandpaper'], {cwd: packageCwd});
 			post();
 		} catch (error) {
 			if (error.code === 'ENOENT') {
@@ -105,6 +105,6 @@ module.exports = async (options = {}) => {
 		return;
 	}
 
-	await execa('npm', ['install', '--save-dev', 'xo'], {cwd: packageCwd});
+	await execa('npm', ['install', '--save-dev', 'sandpaper'], {cwd: packageCwd});
 	post();
 };

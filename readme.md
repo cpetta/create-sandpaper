@@ -1,65 +1,22 @@
-# create-xo [![Build Status](https://travis-ci.org/xojs/create-xo.svg?branch=master)](https://travis-ci.org/xojs/create-xo)
+# create-sandpaper [![Build Status](https://travis-ci.org/cpetta/create-sandpaper.svg?branch=master)](https://travis-ci.org/cpetta/create-sandpaper)
 
-> Add [XO](https://github.com/xojs/xo) to your project
+> Add [Sandpaper](https://github.com/cpetta/sandpaper) to your project
 
 
 ## CLI
 
 ```
-$ npm init xo [options]
+$ npm init sandpaper
 ```
-
-Example:
-
-```
-$ npm init xo --space --no-semicolon
-```
-
 
 ## API
 
 ### Usage
 
 ```js
-const createXo = require('create-xo');
+const createSandpaper = require('create-sandpaper');
 
 (async () => {
-	await createXo();
+	await createSandpaper();
 })();
-```
-
-### createXo(options?)
-
-Returns a `Promise`.
-
-#### options
-
-Type: `object`
-
-#### cwd
-
-Type: `string`<br>
-Default: `process.cwd()`
-
-Current working directory.
-
-#### args
-
-Type: `string[]`<br>
-Default: CLI arguments *(`process.argv.slice(2)`)*
-
-Options to put in [XO's config](https://www.npmjs.com/package/xo#config) in `package.json`.
-
-For instance, with the arguments `['--space', '--env=node']` the following will be put in `package.json`:
-
-```json
-{
-	"name": "awesome-package",
-	"xo": {
-		"space": true,
-		"envs": [
-			"node"
-		]
-	}
-}
 ```
